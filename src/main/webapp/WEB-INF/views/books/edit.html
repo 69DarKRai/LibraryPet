@@ -1,10 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Изменение данных книги</title>
 </head>
 <body>
-$END$
+
+<style>
+    label, input {
+        display: block;
+        margin-bottom: 10px;
+    }
+</style>
+
+<form th:method="PATCH" th:action="@{/books/{id}(id=${book.getBook_id()})}" th:object="${book}">
+    <label for="title">Введите название книги: </label>
+    <input type="text" th:field="*{title}" id="title"/>
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{title}">Title error</div>
+
+    <br/>
+
+    <label for="author">Введите автора книги: </label>
+    <input type="text" th:field="*{author}" id="author"/>
+    <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Author error</div>
+
+    <br/>
+
+    <label for="year">Введите дату написания книги: </label>
+    <input type="text" th:field="*{year}" id="year"/>
+    <div style="color:red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year error</div>
+
+    <br/>
+
+    <input type="submit" value="Добавить!"/>
+</form>
+
 </body>
 </html>

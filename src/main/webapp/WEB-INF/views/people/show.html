@@ -1,10 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Страница человека</title>
 </head>
 <body>
-$END$
+<p th:text="${person.getName() + ', ' + person.getAge()} ">Name, age</p>
+
+<div th:if="${books.isEmpty()}">
+    <p>Человек не взял ни одной книги</p>
+    <hr/>
+</div>
+
+<div th:if="${!books.isEmpty()}">
+    <hr/>
+    <b>Книги</b>
+    <br/>
+    <table th:each="book : ${books}">
+        <tr th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">book</tr>
+    </table>
+</div>
+
+<a th:href="@{/people/{id}/edit(id=${person.getPerson_id()})}">Изменить данные</a>
+
+<form th:method="DELETE" th:action="@{/people/{id}(id=${person.getPerson_id()})}">
+    <input type="submit" value="Удалить"/>
+</form>
 </body>
 </html>

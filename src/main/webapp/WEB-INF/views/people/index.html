@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Список людей</title>
 </head>
 <body>
-$END$
+
+<div th:each="person : ${people}">
+    <a th:href="@{/people/{id}(id=${person.getPerson_id()})}" th:text="${person.getPerson_id()} + '. ' + ${person.getName()} + ', '
+    + ${person.getAge()}">user</a>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/people/new">Добавить нового человека</a>
+
 </body>
 </html>
